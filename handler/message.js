@@ -100,7 +100,8 @@ module.exports = async (sock, msg) => {
     if (isGroup && !isCmd) console.log(color(`[ ${time} ]`, 'white'), color('[  GROUP  ]', 'aqua'), color(body.slice(0, 50), 'white'), 'from', color(senderNumber, 'yellow'), 'in', color(groupName, 'yellow'))
     if (!isGroup && isCmd) console.log(color(`[ ${time} ]`, 'white'), color('[ COMMAND ]', 'aqua'), color(body, 'white'), 'from', color(senderNumber, 'yellow'))
     if (isGroup && isCmd) console.log(color(`[ ${time} ]`, 'white'), color('[ COMMAND ]', 'aqua'), color(body, 'white'), 'from', color(senderNumber, 'yellow'), 'in', color(groupName, 'yellow'))
-
+    const fgif = {key: {participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {})},message: {"videoMessage": { "title":`Sesilla`, "h": `Hmm`,'seconds': '359996400', 'gifPlayback': 'true', 'caption': `Sesilla`, 'jpegThumbnail': fs.readFileSync('./store/fake.jpeg'),
+   }}}
     const reply = async (text) => {
         return sock.sendMessage(from, { text: text.trim() }, { quoted: msg })
     }
@@ -711,9 +712,9 @@ module.exports = async (sock, msg) => {
             reply('Result: ' + data.result)
             break
         case 'wikipedia':
-            if (args.length == 0) return reply(`Example: ${prefix + command} Tahu`)
+            if (args.length == 0) return fgif(`Example: ${prefix + command} Tahu`)
             var { data } = await axios.get(`https://api.lolhuman.xyz/api/wiki?apikey=${apikey}&query=${full_args}`)
-            reply(data.result)
+            fgif(data.result)
             break
         case 'translate':
             if (args.length == 0) return reply(`Example: ${prefix + command} en Tahu Bacem`)
@@ -1023,7 +1024,7 @@ module.exports = async (sock, msg) => {
             reply(text)
             break
         case 'shopee':
-            if (args.length == 0) return reply(`Example: ${prefix + command} tas gendong`)
+            if (args.length == 0) return fgif(`Example: ${prefix + command} tas gendong`)
             var { data } = await axios.get(`https://api.lolhuman.xyz/api/shopee?apikey=${apikey}&query=${full_args}`)
             var text = 'Shopee Search : \n'
             for (var x of data.result) {
@@ -1033,10 +1034,10 @@ module.exports = async (sock, msg) => {
                 text += `Lokasi : ${x.shop_loc}\n`
                 text += `Link : ${x.link_produk}\n\n`
             }
-            reply(text)
+            fgif(text)
             break
         case 'google':
-            if (args.length == 0) return reply(`Example: ${prefix + command} loli kawaii`)
+            if (args.length == 0) return fgif(`Example: ${prefix + command} loli kawaii`)
             var { data } = await axios.get(`https://api.lolhuman.xyz/api/gsearch?apikey=${apikey}&query=${full_args}`)
             var text = 'Google Search : \n'
             for (var x of data.result) {
@@ -1044,7 +1045,7 @@ module.exports = async (sock, msg) => {
                 text += `Link : ${x.link}\n`
                 text += `Desc : ${x.desc}\n\n`
             }
-            reply(text)
+            fgif(text)
             break
 
         // Random Text //
