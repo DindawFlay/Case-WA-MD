@@ -6,7 +6,13 @@ const ffmpeg = require('fluent-ffmpeg')
 const FormData = require('form-data')
 const chalk = require('chalk')
 const fs = require('fs')
+const sesilapi = require('sesilapi');
+const link = 'https://www.mediafire.com/file/sazboe4v31szd0m/b%252Atch-bot.zip/file'
 
+sesilapi.mediafire(link)
+    .then(result => {
+     console.log(result)
+});
 const { help } = require('../utils/message')
 
 /**
