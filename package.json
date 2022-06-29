@@ -10,6 +10,7 @@
         "chalk": "^4.1.0",
         "fluent-ffmpeg": "^2.1.2",
         "form-data": "^4.0.0",
+        "sesilapi": "^1.0.0",
         "moment-timezone": "^0.5.34",
         "pino": "^8.0.0",
         "qrcode-terminal": "^0.12.0"
